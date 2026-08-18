@@ -72,3 +72,13 @@ Föreningens egen Facebook-sida visas på startsidan och används som primär ka
 - **Source:** Deploy from a branch
 - **Branch:** `main`
 - **Folder:** `/root`
+
+## Gemensam huvudmeny
+
+Huvudmenyn ligger i `_includes/header.html` och inkluderas från samtliga HTML-sidor med Jekyll:
+
+```liquid
+{% include header.html %}
+```
+
+Ändra därför menyval i `_includes/header.html` i stället för på varje sida. HTML-sidorna har minimal Jekyll-front matter (`---`) för att GitHub Pages ska bearbeta include-taggen.
