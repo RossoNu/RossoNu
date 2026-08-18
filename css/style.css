@@ -54,10 +54,10 @@ a { color: inherit; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 22px;
+  gap: 16px;
 }
 .brand {
-  min-width: 250px;
+  min-width: 230px;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -88,16 +88,17 @@ nav ul {
   padding: 0;
   margin: 0;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: flex-end;
-  gap: 5px;
+  gap: 2px;
 }
 nav a {
   display: block;
-  padding: 8px 11px;
+  padding: 8px 7px;
   border-radius: 999px;
   color: var(--sea-dark);
-  font-size: .92rem;
+  font-size: .89rem;
+  white-space: nowrap;
   text-decoration: none;
 }
 nav a:hover,
@@ -378,7 +379,7 @@ footer {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
 }
 
-@media (max-width: 980px) {
+@media (max-width: 1040px) {
   .header-inner { align-items: flex-start; flex-direction: column; }
   nav ul { justify-content: flex-start; }
   .hero { grid-template-columns: 1fr; padding-top: 42px; }
