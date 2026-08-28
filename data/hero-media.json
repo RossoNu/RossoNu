@@ -33,7 +33,8 @@
     "type": "image",
     "src": "images/index/hero/forrest-01-gleisner.jpg",
     "duration": 8000,
-    "enabled": true
+    "enabled": true,
+    "position": "70% 30%"
   },
   {
     "type": "image",
