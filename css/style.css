@@ -213,7 +213,7 @@ nav a[aria-current="page"] { font-weight: 750; }
   color: var(--sea-dark);
   backdrop-filter: blur(10px);
 }
-.hero-note strong { display: block; }
+.hero-note strong { display: none; }
 
 main {
   max-width: var(--content-width);
