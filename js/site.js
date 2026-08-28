@@ -71,6 +71,7 @@ async function loadHeroMedia() {
     const image = document.createElement("div");
     image.className = "hero-background";
     image.style.backgroundImage = `url('${item.src}')`;
+    image.style.backgroundPosition = item.position || "center";
     image.setAttribute("aria-hidden", "true");
 
     container.appendChild(image);
