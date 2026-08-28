@@ -13,14 +13,29 @@ async function loadHeroMedia() {
     items = await response.json();
   } catch (error) {
     console.error("Kunde inte läsa hero-media.json", error);
-    items = [{ type: "image", src: "images/index/hero/rosso-01.jpg", duration: 8000 }];
+    items = [
+      {
+        type: "image",
+        src: "images/index/hero/rosso-01.jpg",
+        duration: 8000,
+        enabled: true
+      }
+    ];
   }
 
-  if (!Array.isArray(items) || items.length === 0) return;
+  if (!Array.isArray(items)) return;
+
+  // Hoppa över bilder och videor som är avstängda.
+  items = items.filter((item) => item.enabled !== false);
+
+  // Avsluta om inga aktiva objekt finns.
+  if (items.length === 0) return;
+
   let index = 0;
 
   const showNext = () => {
     container.replaceChildren();
+
     const item = items[index];
     index = (index + 1) % items.length;
 
@@ -32,10 +47,13 @@ async function loadHeroMedia() {
       video.muted = true;
       video.playsInline = true;
       video.setAttribute("aria-hidden", "true");
+
       let loopsDone = 0;
       const loopsWanted = Number(item.loops) || 1;
+
       video.addEventListener("ended", () => {
         loopsDone += 1;
+
         if (loopsDone < loopsWanted) {
           video.currentTime = 0;
           video.play().catch(showNext);
@@ -43,7 +61,9 @@ async function loadHeroMedia() {
           showNext();
         }
       });
+
       video.addEventListener("error", showNext, { once: true });
+
       container.appendChild(video);
       return;
     }
@@ -52,8 +72,13 @@ async function loadHeroMedia() {
     image.className = "hero-background";
     image.style.backgroundImage = `url('${item.src}')`;
     image.setAttribute("aria-hidden", "true");
+
     container.appendChild(image);
-    window.setTimeout(showNext, Number(item.duration) || 8000);
+
+    window.setTimeout(
+      showNext,
+      Number(item.duration) || 8000
+    );
   };
 
   showNext();
